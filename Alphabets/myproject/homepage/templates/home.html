@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Home Page</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+
+</head>
+
+<body>
+    <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <!-- End #mobile-menu-toggle -->
+    <div id="lead">
+        <div id="lead-content">
+            <h1 style="margin: 30px;">Hand Gesture Recognition System </h1>
+           
+
+			    <form method="post" enctype="multipart/form-data" action="upload/">
+            	{% csrf_token %}
+            	<input type="file" name="upload"  id="upload" class="btn-rounded-white">
+            	<input type="submit" value = "Upload Image" class="btn-rounded-white">
+            </form>
+      
+            {% if uploadurl %}
+            <form method="post" action="recognize/">
+            	{% csrf_token %}
+            	<input type="submit" value = "Recognize Gesture" class="btn-rounded-white">
+            	<input type="hidden" id="url" name="url" value= {{uploadurl}} class="btn-rounded-white">
+            </form>
+            {% endif %}
+           <button  class="btn-rounded-white" onclick="location.href='{% url 'script' %}'">Dynamic</button>
+            <button  class="btn-rounded-white" onclick="location.href='{% url 'preprocess'%}'">Preprocess</button>
+        
+
+	<script>
+  	$(document).ready(function(){
+  	$("#b2").click(function(){
+  	$.ajax({
+    method: "GET",
+    url: "views.py",
+    data: {"place" : value},
+    dataType: "text",
+    success: function(result){
+      var data=JSON.parse(result);
+      {{data}}
+      console.log(result);
+    }
+  });
+});
+
+</script>
+
+        </div>
+        <!-- End #lead-content -->
+
+
+</html>
+
+
+
+
+
+

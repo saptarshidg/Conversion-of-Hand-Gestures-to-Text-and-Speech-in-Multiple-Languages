@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Project Home Page</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="libs/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+
+    <div id="mobile-menu-open" class="shadow-large">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </div>
+    <div id="lead">
+<h1>	{{output}} </h1>
+<form method="post" action="speech/">
+	{% csrf_token %}
+	<select name="lang" id="lang">
+		<option value="1">English</option>
+		<option value="2">Dutch</option>
+		<option value="3">French</option>
+		<option value="4">German</option>
+		<option value="5">Italian</option>
+		<option value="6">Portuguese</option>
+		<option value="7">Spanish</option>
+	</select>
+ <button  type="submit" class="btn-rounded-white" >Speech</button>
+</form>
+</div>
+</body>
+</html>
